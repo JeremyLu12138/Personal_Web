@@ -1,0 +1,372 @@
+:root {
+  --bg: #f7f2e7;
+  --paper: #fbf8f1;
+  --ink: #1e1c18;
+  --muted: #6b655d;
+  --line: #d4ccbc;
+  --accent: #c96e43;
+  --radius: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Sora", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 85% 12%, rgba(201, 110, 67, 0.16), transparent 28%),
+    radial-gradient(circle at 10% 40%, rgba(46, 101, 77, 0.1), transparent 34%),
+    var(--bg);
+  line-height: 1.45;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(30, 28, 24, 0.08);
+  background-color: rgba(247, 242, 231, 0.86);
+}
+
+.header-inner {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.brand {
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 18px;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.desktop-nav a,
+.location,
+.menu-toggle {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.desktop-nav a:hover,
+.text-link:hover,
+.contact-links a:hover,
+.site-footer a:hover {
+  color: var(--ink);
+}
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+
+.section {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+  padding: 64px 0;
+}
+
+.hero {
+  min-height: calc(88vh - 78px);
+  display: grid;
+  align-content: center;
+  gap: 14px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+h1 {
+  margin: 0;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(3rem, 9vw, 7.2rem);
+  line-height: 0.92;
+}
+
+.hero-copy {
+  margin: 0;
+  max-width: 620px;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.section-title-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+h2 {
+  margin: 0;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+
+.text-link {
+  color: var(--muted);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.works-grid {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.work-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.work-media {
+  height: 290px;
+  border-bottom: 1px solid var(--line);
+}
+
+.work-1 {
+  background: linear-gradient(135deg, #4f7a59, #abc89b 65%, #e7dcc4);
+}
+
+.work-2 {
+  background: linear-gradient(150deg, #cf7f45, #f0c89a 55%, #9fbe89);
+}
+
+.work-3 {
+  background: linear-gradient(120deg, #b48763, #f2dcc2 48%, #3f5a58);
+}
+
+.work-4 {
+  background: linear-gradient(135deg, #b7c7ad, #ede4cf 48%, #d99360);
+}
+
+.work-card h3 {
+  margin: 16px 16px 4px;
+  font-size: 1.2rem;
+}
+
+.work-card p {
+  margin: 0 16px 18px;
+  color: var(--muted);
+}
+
+.bottom-link {
+  display: inline-block;
+  margin-top: 28px;
+}
+
+.services h2 {
+  margin-bottom: 22px;
+}
+
+.services-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.service-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(251, 248, 241, 0.72);
+  padding: 22px;
+}
+
+.service-card span {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.service-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.22rem;
+}
+
+.service-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.about-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.about-item {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.about-item h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-item p,
+.about-item li {
+  margin: 0;
+  color: var(--muted);
+}
+
+.career ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.contact {
+  display: grid;
+  gap: 18px;
+}
+
+.contact h2 a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 8px;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: var(--muted);
+}
+
+.site-footer {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+  padding: 18px 0 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(247, 242, 231, 0.98);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mobile-menu-inner {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+  padding-top: 24px;
+}
+
+.mobile-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 56px;
+}
+
+.mobile-nav {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.mobile-nav a {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(2rem, 9vw, 3.4rem);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  .desktop-nav,
+  .location {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-block;
+    margin-left: auto;
+  }
+
+  .works-grid,
+  .services-list,
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .work-media {
+    height: 240px;
+  }
+
+  .section {
+    padding: 52px 0;
+  }
+}
+
