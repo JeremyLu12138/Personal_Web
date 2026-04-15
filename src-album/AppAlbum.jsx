@@ -2,17 +2,62 @@ import React, { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Camera, X, ArrowLeft, Maximize2, LayoutTemplate, Grid3X3, PanelsTopLeft, GalleryVertical, Info } from "lucide-react";
 
-const ALBUM_ITEMS = [
-  { id: "A-01", title: "Neon Street", tag: "Night City", src: "https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=1800" },
-  { id: "A-02", title: "Fog Transit", tag: "Urban Mood", src: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=1800" },
-  { id: "A-03", title: "Blue Frame", tag: "Life Record", src: "https://images.unsplash.com/photo-1494548162494-384bba4ab999?q=80&w=1800" },
-  { id: "A-04", title: "Silent Rail", tag: "Motion Study", src: "https://images.unsplash.com/photo-1465447142348-e9952c393450?q=80&w=1800" },
-  { id: "A-05", title: "Window Light", tag: "Daily Scene", src: "https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=1800" },
-  { id: "A-06", title: "Signal", tag: "Tech Texture", src: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1800" },
-  { id: "A-07", title: "After Rain", tag: "Life Record", src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1800" },
-  { id: "A-08", title: "Shadow Walk", tag: "Human Story", src: "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?q=80&w=1800" },
-  { id: "A-09", title: "Parallel Road", tag: "Story Frame", src: "https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?q=80&w=1800" },
-];
+const LAYOUT_CONTENT = {
+  masonry: {
+    themeTitle: "Ocean Pulse",
+    themeIntro: "Is the ocean bright or dark? Australia is surrounded by the sea, but in what form should such a vast ocean be recorded?",
+    items: [
+      { id: "M-01", title: "Sea House", tag: "Green with Blue", src: "photos/sea_house.jpg" },
+      { id: "M-02", title: "Lone Boat", tag: "One in Ocean", src: "photos/sea_ship3.jpg" },
+      { id: "M-03", title: "Lone Tree", tag: "One in Ocean", src: "photos/sea_tree.jpg" },
+      { id: "M-04", title: "No Fishing", tag: "The Sea At Dusk", src: "photos/sea_house4.jpg" },
+      { id: "M-05", title: "Surfing", tag: "Human Life", src: "photos/sea_surfing.jpg" },
+      { id: "M-06", title: "Pigeon", tag: "Animals On The Sea", src: "photos/sea_pigeon.jpg" },
+      { id: "M-07", title: "Sea", tag: "Dark Sea", src: "photos/sea.jpg" },
+      { id: "M-08", title: "Beach Volleyball", tag: "Human Story", src: "photos/sea_volleyball.jpg" },
+      { id: "M-09", title: "Seaside city", tag: "Human, House, Sea", src: "photos/sea_house1.jpg" },
+      { id: "M-10", title: "Mirror", tag: "Mirror of the Sea", src: "photos/sea_house3.jpg" },
+    ],
+  },
+  story: {
+    themeTitle: "Editorial Journey",
+    themeIntro: "Here, I visited many mountains. What are mountains? Are they barren or inhabited?",
+    items: [
+      { id: "S-01", title: "Glacier hiking", tag: "Main Story", src: "photos/mountain5.jpg" },
+      { id: "S-02", title: "Couples", tag: "Chapter I", src: "photos/mountain3.jpg" },
+      { id: "S-03", title: "Oneself", tag: "Chapter II", src: "photos/mountain4.jpg" },
+      { id: "S-04", title: "Rainbow", tag: "Chapter III", src: "photos/mountain2.jpg" },
+      { id: "S-05", title: "Cliff", tag: "Final ? ", src: "photos/mountain1.jpg" },
+    ],
+  },
+  film: {
+    themeTitle: "Human, Street, Life",
+    themeIntro: "The street is the most beautiful expression of human life; it is here that the true pulse of the city can be felt.",
+    items: [
+      { id: "F-01", title: "Street", tag: "Roll 01", src: "photos/qvb_coffeeShop1.jpg" },
+      { id: "F-02", title: "Car", tag: "Roll 01", src: "photos/street_life1.jpg" },
+      { id: "F-03", title: "Lawn, City", tag: "Roll 01", src: "photos/street_life2.jpg" },
+      { id: "F-04", title: "City", tag: "Roll 01", src: "photos/street_life3.jpg" },
+      { id: "F-05", title: "Pigeon", tag: "Roll 02", src: "photos/street_life4.jpg" },
+      { id: "F-06", title: "Evening", tag: "Roll 02", src: "photos/street_life5.jpg" },
+      { id: "F-07", title: "Shop", tag: "Roll 02", src: "photos/street_life.jpg" },
+      { id: "F-08", title: "Performer", tag: "Roll 02", src: "photos/qvb_performer.jpg" },
+      { id: "F-09", title: "Light", tag: "Roll 03", src: "photos/human_life2.jpg" },
+    ],
+  },
+  magazine: {
+    themeTitle: "Objects Discovery",
+    themeIntro: "The most creative and dynamic creatures in the world.",
+    items: [
+      { id: "G-01", title: "Beach", tag: "Human, Beach, Light", src: "photos/human_life1.jpg" },
+      { id: "G-02", title: "Koala", tag: "Zoo", src: "photos/human_life3.jpg" },
+      { id: "G-03", title: "Dog", tag: "Dogs Party", src: "photos/dog_party1.jpg" },
+      { id: "G-04", title: "Mountain", tag: "Climbing", src: "photos/mountain.jpg" },
+      { id: "G-05", title: "Food", tag: "Eating", src: "photos/food.jpg" },
+      { id: "G-06", title: "Driver", tag: "Train", src: "photos/human_life.jpg" },
+    ],
+  },
+};
 
 const LAYOUTS = [
   { id: "masonry", label: "Masonry", icon: LayoutTemplate },
@@ -103,7 +148,7 @@ function MasonryLayout({ items, onOpen }) {
 }
 
 // 2. Editorial 故事叙述布局
-function StoryLayout({ items, onOpen }) {
+function StoryLayout({ items, onOpen, themeIntro }) {
   const mainItem = items[0];
   const sideItems = items.slice(1, 4);
 
@@ -114,10 +159,7 @@ function StoryLayout({ items, onOpen }) {
           <img src={mainItem.src} className="aspect-[16/9] w-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-1000" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent p-8 flex flex-col justify-end">
             <h2 className="text-4xl font-bold tracking-tighter text-white sm:text-6xl">{mainItem.title}</h2>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-white/60">
-              Capturing the soul of urban environments through the lens of a minimalist. 
-              This frame represents the intersection of technology and humanity.
-            </p>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-white/60">{themeIntro}</p>
             <button 
               onClick={() => onOpen(mainItem)}
               className="mt-6 flex w-fit items-center gap-2 border border-cyan-500/50 bg-cyan-500/10 px-6 py-2 text-xs uppercase tracking-widest text-cyan-300 transition hover:bg-cyan-500 hover:text-black"
@@ -156,16 +198,16 @@ function FilmGridLayout({ items, onOpen }) {
 }
 
 // 4. Magazine 杂志排版布局
-function SplitLayout({ items, onOpen }) {
+function SplitLayout({ items, onOpen, themeTitle, themeIntro }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
       <div className="md:col-span-4 sticky top-24">
         <h3 className="text-xs uppercase tracking-[0.5em] text-cyan-400 mb-4 flex items-center gap-2">
           <Info size={12}/> Perspective Vol.1
         </h3>
-        <h2 className="text-5xl font-black leading-none mb-6">URBAN DISCOVERY</h2>
+        <h2 className="text-5xl font-black leading-none mb-6 uppercase">{themeTitle}</h2>
         <div className="space-y-4 text-sm text-white/40 leading-relaxed border-l border-cyan-500/30 pl-6">
-          <p>This collection explores the silence found within the chaos of the metropolis. Every frame is a record of light interacting with static structure.</p>
+          <p>{themeIntro}</p>
           <p>Curated by Jeremy Lu, 2024 Archive.</p>
         </div>
       </div>
@@ -197,14 +239,19 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  const currentContent = LAYOUT_CONTENT[layout] || LAYOUT_CONTENT.masonry;
+  const currentItems = currentContent.items;
+  const currentThemeTitle = currentContent.themeTitle;
+  const currentThemeIntro = currentContent.themeIntro;
+
   const layoutView = useMemo(() => {
     switch(layout) {
-      case "story": return <StoryLayout items={ALBUM_ITEMS} onOpen={setActive} />;
-      case "film": return <FilmGridLayout items={ALBUM_ITEMS} onOpen={setActive} />;
-      case "magazine": return <SplitLayout items={ALBUM_ITEMS} onOpen={setActive} />;
-      default: return <MasonryLayout items={ALBUM_ITEMS} onOpen={setActive} />;
+      case "story": return <StoryLayout items={currentItems} onOpen={setActive} themeIntro={currentThemeIntro} />;
+      case "film": return <FilmGridLayout items={currentItems} onOpen={setActive} />;
+      case "magazine": return <SplitLayout items={currentItems} onOpen={setActive} themeTitle={currentThemeTitle} themeIntro={currentThemeIntro} />;
+      default: return <MasonryLayout items={currentItems} onOpen={setActive} />;
     }
-  }, [layout]);
+  }, [layout, currentItems, currentThemeIntro, currentThemeTitle]);
 
   const handleBackToRoot = () => {
     if (window.history.length > 1) {
@@ -262,7 +309,7 @@ export default function App() {
              <div className="h-12 w-px bg-white/10" />
              <div className="text-right">
                 <div className="text-[10px] text-white/30 uppercase tracking-widest">Count</div>
-                <div className="text-xs text-white/80">{ALBUM_ITEMS.length} Frames</div>
+                <div className="text-xs text-white/80">{currentItems.length} Frames</div>
              </div>
           </div>
         </div>
@@ -287,6 +334,13 @@ export default function App() {
             );
           })}
         </div>
+
+        {(layout === "masonry" || layout === "film") && (
+          <div className="mb-8 max-w-3xl border-l border-cyan-500/30 pl-4">
+            <p className="text-[10px] uppercase tracking-[0.28em] text-cyan-400/80">{currentThemeTitle}</p>
+            <p className="mt-2 text-sm leading-relaxed text-white/55">{currentThemeIntro}</p>
+          </div>
+        )}
 
         {/* Content Area */}
         <AnimatePresence mode="wait">
