@@ -110,7 +110,7 @@ const App = () => {
           <div className="mt-8 flex justify-center gap-12 text-[10px] text-white/40 uppercase tracking-[0.3em]">
             <span>Full-stack designer</span>
             <span className="text-cyan-500">*</span>
-            <span>Creative technologist</span>
+            <span>Jeremy Lu</span>
           </div>
         </motion.div>
 
