@@ -208,7 +208,7 @@ function SplitLayout({ items, onOpen, themeTitle, themeIntro }) {
         <h2 className="text-5xl font-black leading-none mb-6 uppercase">{themeTitle}</h2>
         <div className="space-y-4 text-sm text-white/40 leading-relaxed border-l border-cyan-500/30 pl-6">
           <p>{themeIntro}</p>
-          <p>Curated by Jeremy Lu, 2024 Archive.</p>
+          <p>Curated by Jeremy Lu, 2025 Archive.</p>
         </div>
       </div>
       <div className="md:col-span-8 grid grid-cols-2 gap-6">
