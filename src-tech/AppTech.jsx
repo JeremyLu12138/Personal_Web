@@ -200,9 +200,9 @@ const App = () => {
         </div>
       </section>
 
-      <section className="relative z-20 py-35 px-6 bg-black">
+      <section className="relative z-20 py-37 px-6 bg-black">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-          <div className="w-20 h-20 rounded-full border border-cyan-500/20 flex items-center justify-center mb-12 relative">
+          <div className="mt-8 w-20 h-20 rounded-full border border-cyan-500/20 flex items-center justify-center mb-12 relative">
             <Share2 size={24} className="text-cyan-400" />
             <div className="absolute inset-0 border border-cyan-400 rounded-full animate-ping opacity-20" />
           </div>
