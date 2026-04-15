@@ -1,6 +1,12 @@
 {
   "rewrites": [
     { "source": "/album", "destination": "/album.html" },
-    { "source": "/tech", "destination": "/tech.html" }
+    { "source": "/tech", "destination": "/tech.html" },
+    { "source": "/project", "destination": "/project.html" },
+    { "source": "/project/neural-core", "destination": "/project-neural-core.html" },
+    { "source": "/project/quantum-os", "destination": "/project-quantum-os.html" },
+    { "source": "/project/data-vortex", "destination": "/project-data-vortex.html" },
+    { "source": "/project/bio-link", "destination": "/project-bio-link.html" },
+    { "source": "/project/grid-sync", "destination": "/project-grid-sync.html" }
   ]
 }

@@ -11,6 +11,32 @@ const TECH_WORKS = [
   { id: '06', title: 'Photographer', category: 'Life record', img: 'https://images.unsplash.com/photo-1531746790731-6c307f8fb51e?q=80&w=800' },
 ];
 
+const PROJECT_URL_BY_ID = {
+  '01': '/project.html?project=neural-core',
+  '02': '/project.html?project=quantum-os',
+  '03': '/project.html?project=data-vortex',
+  '04': '/project.html?project=bio-link',
+  '05': '/project.html?project=grid-sync',
+};
+
+const CORE_SKILLS = [
+  {
+    id: '01',
+    title: 'Full-Stack Development',
+    desc: 'Build complete products across frontend, backend, APIs, database, and deployment.',
+  },
+  {
+    id: '02',
+    title: 'Web Design',
+    desc: 'Design responsive, user-focused interfaces with clear hierarchy and interaction flow.',
+  },
+  {
+    id: '03',
+    title: 'AI Integration',
+    desc: 'Integrate LLM capabilities, AI workflows, and automation into real-world web applications.',
+  },
+];
+
 const TechBackground = () => (
   <div className="fixed inset-0 z-0 pointer-events-none opacity-20">
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.05),transparent)]" />
@@ -18,6 +44,11 @@ const TechBackground = () => (
     <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%]" />
   </div>
 );
+
+function getCardTargetUrl(workId) {
+  if (workId === '06') return '/album.html';
+  return PROJECT_URL_BY_ID[workId] || '#';
+}
 
 const App = () => {
   const containerRef = useRef(null);
@@ -56,7 +87,7 @@ const App = () => {
           <div className="flex gap-6 border-b border-white/10 pb-2">
             <a href="#" className="hover:text-cyan-400 transition-colors">/index</a>
             <a href="#" className="hover:text-cyan-400 transition-colors">/repository</a>
-            <a href="#" className="hover:text-cyan-400 transition-colors">/terminal</a>
+            <a href="/project.html" className="hover:text-cyan-400 transition-colors">/project</a>
             <a href="/album.html" className="hover:text-cyan-400 transition-colors">/album</a>
           </div>
           <div className="text-white/30 text-[9px]">33.8688 S, 151.2093 E // UTC+10</div>
@@ -129,11 +160,17 @@ const App = () => {
                 key={work.id}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                onClick={work.id === '06' ? () => (window.location.href = '/album.html') : undefined}
-                onKeyDown={work.id === '06' ? (e) => { if (e.key === 'Enter') window.location.href = '/album.html'; } : undefined}
-                role={work.id === '06' ? 'link' : undefined}
-                tabIndex={work.id === '06' ? 0 : undefined}
-                className={`group relative bg-[#0a0a0a] p-8 min-h-[400px] flex flex-col justify-between hover:bg-cyan-950/20 transition-all duration-500 overflow-hidden ${work.id === '06' ? 'cursor-pointer ring-1 ring-cyan-500/20 hover:ring-cyan-400/50' : ''}`}
+                onClick={() => {
+                  window.location.href = getCardTargetUrl(work.id);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key !== 'Enter' && e.key !== ' ') return;
+                  e.preventDefault();
+                  window.location.href = getCardTargetUrl(work.id);
+                }}
+                role="link"
+                tabIndex={0}
+                className={`group relative bg-[#0a0a0a] p-8 min-h-[400px] flex flex-col justify-between hover:bg-cyan-950/20 transition-all duration-500 overflow-hidden cursor-pointer ${work.id === '06' ? 'ring-1 ring-cyan-500/20 hover:ring-cyan-400/50' : ''}`}
               >
                 <div className="absolute top-0 right-0 p-4 text-[10px] text-white/10 group-hover:text-cyan-500/30 font-mono transition-colors">#{work.id}</div>
 
@@ -163,7 +200,7 @@ const App = () => {
         </div>
       </section>
 
-      <section className="relative z-20 py-40 px-6 bg-black">
+      <section className="relative z-20 py-35 px-6 bg-black">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
           <div className="w-20 h-20 rounded-full border border-cyan-500/20 flex items-center justify-center mb-12 relative">
             <Share2 size={24} className="text-cyan-400" />
@@ -174,7 +211,17 @@ const App = () => {
             Sync with<br />the <span className="text-cyan-500">grid</span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full mt-20 pt-20 border-t border-white/5">
+          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-3 mb-14 text-left">
+            {CORE_SKILLS.map((skill) => (
+              <article key={skill.id} className="border border-white/10 bg-[#0a0a0a] p-5 hover:border-cyan-500/40 transition-colors">
+                <div className="text-[10px] text-white/30 tracking-[0.24em] uppercase mb-2">#{skill.id}</div>
+                <h3 className="text-base font-bold uppercase tracking-[0.08em] mb-2">{skill.title}</h3>
+                <p className="text-sm text-white/55 leading-6">{skill.desc}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mt-16 pt-20 border-t border-white/5">
             <div className="text-left space-y-4">
               <div className="text-[10px] text-white/30">/COMMUNICATION_PORT</div>
               <a href="#" className="text-xl font-bold hover:text-cyan-400 block transition-colors tracking-tight">ENCRYPTED_MAIL: luckylu221118@gmail.com</a>
