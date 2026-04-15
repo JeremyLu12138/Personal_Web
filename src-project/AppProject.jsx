@@ -8,17 +8,21 @@ const PROJECTS = [
     name: "AI Hedge Fund",
     role: "Developer, Data Management",
     summary:
-      "A scalable AI-ready architecture for deploying model-powered features with stable observability and low-latency APIs.",
+      "Developed a web-based investment dashboard for the Australian stock market, providing industry-based company classification and up to one year of historical stock data. The platform features interactive price and volume visualizations to analyze market sentiment and trends, along with integrated director information to support strategic investment insights. Additionally, an AI-powered module automatically retrieves daily company announcements and generates market reports, enabling users to make informed, data-driven decisions.",
     challenge:
-      "Needed a structure that supports rapid feature growth while keeping deployment predictable and maintainable.",
+      "1. Data modeling and financial logic are complex, requiring accurate and scalable computational logic. \n2. Data visualization presents challenges across multiple dimensions: time, assets, and returns. \n3. Data sources are difficult to obtain and require manual processing, especially information about company directors.",
     solution:
-      "Built a modular frontend/backend workflow with clean service boundaries, reusable UI patterns, and CI-friendly project organization.",
-    stack: ["React", "Vite", "Tailwind", "Framer Motion", "Node"],
-    result: "Faster iteration speed and cleaner project extension path for future AI features.",
+      "1. Presenting complex data in a product-like manner \n2. Data is manually processed to ensure its accuracy and validity. \n3. User-oriented design.",
+    stack: ["React", "Tailwind", "AI Integration", "Node", "Prompt"],
+    result: "Investment data visualization dashboard, portfolio analysis.",
     image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1600",
+    gallery: [
+      "/projects/hedge/dashboard-overview.png",
+      "/projects/hedge/director-profile.png",
+    ],
   },
   {
-    slug: "quantum-os",
+    slug: "training-platform",
     id: "02",
     name: "QUANTUM OS",
     role: "SYSTEM ARCHITECTURE",

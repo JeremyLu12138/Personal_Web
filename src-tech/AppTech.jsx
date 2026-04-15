@@ -4,7 +4,7 @@ import { ArrowRight, Cpu, Globe, Terminal, Shield, Activity, Share2 } from 'luci
 
 const TECH_WORKS = [
   { id: '01', title: 'Ai Hedge Fund', category: 'AI & Finance', img: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=800' },
-  { id: '02', title: 'QUANTUM OS', category: 'SYSTEM ARCHITECTURE', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800' },
+  { id: '02', title: 'Training Platform', category: 'AI & Education', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800' },
   { id: '03', title: 'Data Analysis', category: 'Data Science', img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800' },
   { id: '04', title: 'Computer Vision', category: 'Image Recognition', img: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=800' },
   { id: '05', title: 'GRID SYNC', category: 'BLOCKCHAIN NODE', img: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=800' },
@@ -13,7 +13,7 @@ const TECH_WORKS = [
 
 const PROJECT_URL_BY_ID = {
   '01': '/project.html?project=ai-hedge-fund',
-  '02': '/project.html?project=quantum-os',
+  '02': '/project.html?project=training-platform',
   '03': '/project.html?project=data-analysis',
   '04': '/project.html?project=retinal-semantic-segmentation',
   '05': '/project.html?project=grid-sync',
