@@ -6,7 +6,7 @@ const TECH_WORKS = [
   { id: '01', title: 'NEURAL CORE', category: 'AI INFRASTRUCTURE', img: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=800' },
   { id: '02', title: 'QUANTUM OS', category: 'SYSTEM ARCHITECTURE', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800' },
   { id: '03', title: 'DATA VORTEX', category: 'CYBER SECURITY', img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800' },
-  { id: '04', title: 'BIO LINK', category: 'HCI INTERFACE', img: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=800' },
+  { id: '04', title: 'Computer Vision', category: 'AI INFRASTRUCTURE', img: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=800' },
   { id: '05', title: 'GRID SYNC', category: 'BLOCKCHAIN NODE', img: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=800' },
   { id: '06', title: 'Photographer', category: 'Life record', img: 'https://images.unsplash.com/photo-1531746790731-6c307f8fb51e?q=80&w=800' },
 ];
@@ -15,7 +15,7 @@ const PROJECT_URL_BY_ID = {
   '01': '/project.html?project=neural-core',
   '02': '/project.html?project=quantum-os',
   '03': '/project.html?project=data-vortex',
-  '04': '/project.html?project=bio-link',
+  '04': '/project.html?project=retinal-semantic-segmentation',
   '05': '/project.html?project=grid-sync',
 };
 

@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
+import React, { useEffect, useMemo, useState } from "react";
+import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink, Github, X } from "lucide-react";
 
 const PROJECTS = [
   {
@@ -48,19 +48,25 @@ const PROJECTS = [
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1600",
   },
   {
-    slug: "bio-link",
+    slug: "retinal-semantic-segmentation",
     id: "04",
-    name: "BIO LINK",
-    role: "HCI INTERFACE",
+    name: "Retinal Semantic Segmentation",
+    role: "Project Manager & Developer",
     summary:
-      "An interaction-focused interface project balancing clarity, speed, and emotional feel.",
+      "A deep learning-based medical image analysis system is developed for real-time retinal vessel segmentation, supporting high-precision detection, small vessel identification, and batch image processing. The system provides a complete web platform, supporting user data uploads, model selection, result visualization, and historical record management, meeting the demands for efficiency, accuracy, and ease of use in medical scenarios.",
     challenge:
-      "The product needed stronger interaction rhythm and visual readability.",
+      "1. A trade-off needs to be struck between high accuracy and lightweight models.\n2. Different models (AggreUNet vs LadderNet) have significant differences in characteristics; they need to support both local and remote inference.\n3. Traditional deployments are complex (database + model + dependencies).",
     solution:
-      "Refined spacing, motion timing, and content hierarchy for more intuitive human-computer interaction.",
-    stack: ["Interaction Design", "Motion", "Responsive UI"],
-    result: "More fluid user journeys and improved task completion confidence.",
+      "1. Self-developed AggreUNet with multi-scale feature fusion (FeatureFuse) and residual structure improve stability.\n2. AggreUNet → Local Inference LadderNet → Remote Inference via Docker API. \n3. The complete web system design, evolved from a modeling tool to a data platform.",
+    stack: ["PyTorch", "AggreUNet", "Flask", "MySQL"],
+    result: "Built a real-time retinal vessel segmentation system.",
     image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=1600",
+    gallery: [
+      "/projects/retinal/loss-curve.png",
+      "/projects/retinal/model-comparison.png",
+      "/projects/retinal/augmentation-table.png",
+      "/projects/retinal/prediction-visual.png",
+    ],
   },
   {
     slug: "grid-sync",
@@ -94,6 +100,15 @@ export default function AppProject() {
   const project = PROJECTS[currentIndex];
   const prev = PROJECTS[(currentIndex - 1 + PROJECTS.length) % PROJECTS.length];
   const next = PROJECTS[(currentIndex + 1) % PROJECTS.length];
+  const [activeFigure, setActiveFigure] = useState(null);
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setActiveFigure(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#050505] font-mono text-[#e0e0e0] selection:bg-cyan-500 selection:text-black">
@@ -122,11 +137,11 @@ export default function AppProject() {
         <section className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
           <article className="border border-white/10 bg-[#0a0a0a] p-6">
             <p className="text-[10px] uppercase tracking-[0.22em] text-cyan-400">Challenge</p>
-            <p className="mt-3 text-sm leading-7 text-white/65">{project.challenge}</p>
+            <p className="mt-3 whitespace-pre-line text-sm leading-7 text-white/65">{project.challenge}</p>
           </article>
           <article className="border border-white/10 bg-[#0a0a0a] p-6">
             <p className="text-[10px] uppercase tracking-[0.22em] text-cyan-400">Solution</p>
-            <p className="mt-3 text-sm leading-7 text-white/65">{project.solution}</p>
+            <p className="mt-3 whitespace-pre-line text-sm leading-7 text-white/65">{project.solution}</p>
           </article>
         </section>
 
@@ -140,6 +155,28 @@ export default function AppProject() {
           <p className="mt-4 text-sm text-white/65"><span className="text-white/40 uppercase text-[10px] tracking-[0.2em] mr-2">Outcome</span>{project.result}</p>
         </section>
 
+        {project.gallery?.length ? (
+          <section className="mt-6 border border-white/10 bg-[#0a0a0a] p-6">
+            <p className="text-[10px] uppercase tracking-[0.22em] text-cyan-400">Figures</p>
+            <div className="mt-4 grid gap-4 md:grid-cols-2">
+              {project.gallery.map((src) => (
+                <button
+                  key={src}
+                  type="button"
+                  onClick={() => setActiveFigure(src)}
+                  className="group overflow-hidden border border-white/10 bg-black/30"
+                >
+                  <img
+                    src={src}
+                    alt="project figure"
+                    className="w-full transition duration-300 group-hover:scale-[1.02]"
+                  />
+                </button>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
         <section className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
           <a href={`/project.html?project=${prev.slug}`} className="inline-flex items-center justify-center gap-2 border border-white/15 bg-[#0a0a0a] px-4 py-3 text-[10px] uppercase tracking-[0.2em] text-white/70 hover:text-cyan-300 hover:border-cyan-400/40 transition"><ChevronLeft size={12} /> Prev Project</a>
           <a href="https://github.com/JeremyLu12138" className="inline-flex items-center justify-center gap-2 border border-white/15 bg-[#0a0a0a] px-4 py-3 text-[10px] uppercase tracking-[0.2em] text-white/70 hover:text-cyan-300 hover:border-cyan-400/40 transition"><Github size={12} /> GitHub</a>
@@ -150,6 +187,31 @@ export default function AppProject() {
           <a href="#" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-white/45 hover:text-cyan-300"><ExternalLink size={12} /> Case Study Link</a>
         </footer>
       </main>
+
+      {activeFigure ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+          onClick={() => setActiveFigure(null)}
+        >
+          <div
+            className="relative w-full max-w-6xl border border-white/20 bg-[#0a0a0a]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setActiveFigure(null)}
+              className="absolute right-3 top-3 z-10 inline-flex items-center gap-2 border border-white/30 bg-black/70 px-3 py-2 text-[10px] uppercase tracking-[0.2em] text-white/90 hover:border-cyan-400/70 hover:text-cyan-300"
+            >
+              <X size={13} /> Close
+            </button>
+            <img
+              src={activeFigure}
+              alt="figure preview"
+              className="max-h-[85vh] w-full object-contain"
+            />
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
