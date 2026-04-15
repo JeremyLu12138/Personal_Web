@@ -3,10 +3,10 @@ import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink, Github, X } from "l
 
 const PROJECTS = [
   {
-    slug: "neural-core",
+    slug: "ai-hedge-fund",
     id: "01",
-    name: "NEURAL CORE",
-    role: "AI INFRASTRUCTURE",
+    name: "AI Hedge Fund",
+    role: "Developer, Data Management",
     summary:
       "A scalable AI-ready architecture for deploying model-powered features with stable observability and low-latency APIs.",
     challenge:
@@ -33,19 +33,25 @@ const PROJECTS = [
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600",
   },
   {
-    slug: "data-vortex",
+    slug: "data-analysis",
     id: "03",
-    name: "DATA VORTEX",
-    role: "CYBER SECURITY",
+    name: "DATA Analysis",
+    role: "Developer",
     summary:
-      "A secure data interaction layer with clear user flows and risk-aware interface design.",
+      "This project analyzes and models fraudulent transactions based on credit card transaction data (over 280,000 records). Through data exploration (EDA), feature analysis, dimensionality reduction visualization, and various machine learning models (Logistic Regression, Decision Tree, XGBoost), a high-performance fraud detection system was built, and optimizations were made to address the class imbalance problem.",
     challenge:
-      "Needed to communicate security-heavy workflows without hurting usability.",
+      "1. Extreme class imbalance. \n2. Fraudulent activities are complex and lack any obvious single characteristic. \n3. Fraud overlaps with normal data distribution ",
     solution:
-      "Used progressive disclosure UI and explicit status feedback for security-sensitive actions.",
-    stack: ["Frontend Security UX", "State Flow Design", "Audit-friendly UI"],
-    result: "Higher trust and fewer user errors in sensitive operations.",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1600",
+      "1. In-depth EDA analysis (behavioral insights): Transaction amount distribution analysis, time analysis, feature correlation analysis. \n2. Feature engineering + visualization: PCA / t-SNE Dimensionality Reduction Analysis & KDE Distribution Comparison (normal vs fraud) \n3. Handling data imbalance: Undersampling, Oversampling, SMOTE",
+    stack: ["Python", "Logistic Regression", "K-Means clustering"],
+    result: "Built a fraud detection system using XGBoost on highly imbalanced credit card data.",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1600",
+    gallery: [
+      "/projects/fraud/amount-distribution.png",
+      "/projects/fraud/time-distribution.png",
+      "/projects/fraud/feature-distribution.png",
+      "/projects/fraud/xgboost-report.png",
+    ],
   },
   {
     slug: "retinal-semantic-segmentation",
