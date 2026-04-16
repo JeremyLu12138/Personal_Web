@@ -16,7 +16,6 @@ const PROJECT_URL_BY_ID = {
   '02': '/project.html?project=training-platform',
   '03': '/project.html?project=data-analysis',
   '04': '/project.html?project=retinal-semantic-segmentation',
-  '05': '/project.html?project=grid-sync',
 };
 
 const CORE_SKILLS = [
@@ -47,7 +46,7 @@ const TechBackground = () => (
 
 function getCardTargetUrl(workId) {
   if (workId === '06') return '/album.html';
-  return PROJECT_URL_BY_ID[workId] || '#';
+  return PROJECT_URL_BY_ID[workId] || null;
 }
 
 const App = () => {
@@ -156,21 +155,27 @@ const App = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1 px-1 bg-white/5 border border-white/5">
             {TECH_WORKS.map((work, i) => (
+              (() => {
+                const targetUrl = getCardTargetUrl(work.id);
+                const isClickable = Boolean(targetUrl);
+                return (
               <motion.div
                 key={work.id}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 onClick={() => {
-                  window.location.href = getCardTargetUrl(work.id);
+                  if (!isClickable) return;
+                  window.location.href = targetUrl;
                 }}
                 onKeyDown={(e) => {
+                  if (!isClickable) return;
                   if (e.key !== 'Enter' && e.key !== ' ') return;
                   e.preventDefault();
-                  window.location.href = getCardTargetUrl(work.id);
+                  window.location.href = targetUrl;
                 }}
-                role="link"
-                tabIndex={0}
-                className={`group relative bg-[#0a0a0a] p-8 min-h-[400px] flex flex-col justify-between hover:bg-cyan-950/20 transition-all duration-500 overflow-hidden cursor-pointer ${work.id === '06' ? 'ring-1 ring-cyan-500/20 hover:ring-cyan-400/50' : ''}`}
+                role={isClickable ? 'link' : undefined}
+                tabIndex={isClickable ? 0 : -1}
+                className={`group relative bg-[#0a0a0a] p-8 min-h-[400px] flex flex-col justify-between hover:bg-cyan-950/20 transition-all duration-500 overflow-hidden ${isClickable ? 'cursor-pointer' : 'cursor-default'} ${work.id === '06' ? 'ring-1 ring-cyan-500/20 hover:ring-cyan-400/50' : ''}`}
               >
                 <div className="absolute top-0 right-0 p-4 text-[10px] text-white/10 group-hover:text-cyan-500/30 font-mono transition-colors">#{work.id}</div>
 
@@ -195,6 +200,8 @@ const App = () => {
 
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-cyan-500/50 -translate-y-full group-hover:animate-scanline" />
               </motion.div>
+                );
+              })()
             ))}
           </div>
         </div>

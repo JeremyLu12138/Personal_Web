@@ -24,17 +24,24 @@ const PROJECTS = [
   {
     slug: "training-platform",
     id: "02",
-    name: "QUANTUM OS",
-    role: "SYSTEM ARCHITECTURE",
+    name: "Training Platform",
+    role: "Developer, Designer",
     summary:
-      "A system-level web architecture focused on consistency, scalability, and developer velocity.",
+      "This is a skills training platform designed to help recent graduates and experienced professionals looking to switch careers understand the rules, knowledge, and practical case studies of new industries. It effectively enables learners to transition more quickly while reducing the training costs for companies. In the future, the platform will integrate AI to analyze learners’ profiles and provide personalized course recommendations, offering customized learning paths tailored to each user.",
     challenge:
-      "Cross-page consistency and component duplication were slowing development.",
+      "1. Content generation: Using AI in combination with scripts and written materials to create effective and engaging learning videos. \n2. AI Assistant: Provides effective support and leverages big data to recommend useful and relevant courses to users. ",
     solution:
-      "Designed a shared architecture pattern and utility layer to reduce duplicated logic and styling drift.",
+      "The platform pages have been largely completed, and work is now focused on video production as well as the subsequent integration of AI features.",
     stack: ["React", "Design Tokens", "Component Architecture", "Vite"],
-    result: "Reduced repeated implementation work and improved long-term maintainability.",
+    result: "An efficient learning platform dedicated to collaborating with various companies to reduce internal training costs.",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600",
+    gallery: [
+      "/projects/training/hero-start-here.png",
+      "/projects/training/break-into-actuarial.png",
+      "/projects/training/create-account.png",
+      "/projects/training/course-home.png",
+      "/projects/training/account-settings.png",
+    ],
   },
   {
     slug: "data-analysis",
